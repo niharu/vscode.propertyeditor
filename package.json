@@ -1,0 +1,84 @@
+{
+	"name": "propertyeditor",
+	"displayName": "propertyeditor",
+	"description": "",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.29.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.unescapeUnicode",
+		"onCommand:extension.escapeUnicode",
+		"onLanguage:python",
+		"onCommand:cowsay.say"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.unescapeUnicode",
+				"title": "Unescape Unicode"
+			},
+			{
+				"command": "extension.escapeUnicode",
+				"title": "Escape Unicode"
+			},
+			{
+				"command": "cowsay.say",
+				"title": "cowsay"
+			},
+			{
+				"command": "cowsay.backwards",
+				"title": "cowsay (↹)"
+			}
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"when": "editorHasSelection",
+					"command": "extension.unescapeUnicode",
+					"group": "YourGroup@1"
+				},
+				{
+					"when": "editorHasSelection",
+					"command": "extension.escapeUnicode",
+					"group": "YourGroup@1"
+				}
+			],
+			"editor/title": [
+				{
+					"command": "extension.unescapeUnicode",
+					"group": "navigation"
+				}
+			],
+			"commandPalette": [
+				{
+					"command": "cowsay.backwards",
+					"when": "resourceScheme == cowsay"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^3.3.1",
+		"vscode": "^1.1.28",
+		"tslint": "^5.12.1",
+		"@types/node": "^10.12.21",
+		"@types/mocha": "^2.2.42"
+	},
+	"dependencies": {
+		"cowsay": "^1.3.1",
+		"native2ascii": "0.0.5",
+		"node-native2ascii": "^0.2.0"
+	}
+}
